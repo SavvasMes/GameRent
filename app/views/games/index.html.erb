@@ -1,0 +1,34 @@
+<%= link_to 'New Game', new_game_path, class: 'btn btn-primary mb-2' %>
+<br>
+<div class="card">
+  <div class="card-header" >Games List</div>
+  <div class="card-body" >
+
+    <table class="table table-hover table-sm">
+      <thead>
+      <th >Game</th>
+      <th>Category</th>
+      <th class="text-center">Year</th>
+      <th></th>
+
+      </thead>
+      <tbody>
+      <% @game.each do |g| %>
+        <tr>
+          <td><%= link_to g.name, g %></td>
+          <td><%=  link_to g.category %></td>
+          <td class="text-center"><%= g.release_date %></td>
+          <td class="text-right"><%= link_to 'Edit', edit_game_path(g), class: 'btn btn-warning'%>
+            <%= link_to 'Delete', g, method: :delete, class: 'btn btn-danger ', data:{confirm: 'Are you sure you want to delete?'} %></td>
+        </tr>
+      <% end %>
+      </tbody>
+
+    </table>
+  </div>
+  <div class="card-footer text-center">
+    <% if @game.total_pages > 1 %>
+      <%= paginate @game %>
+    <% end %>
+  </div>
+</div>
