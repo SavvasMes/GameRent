@@ -1,0 +1,23 @@
+<% if @rent.errors.any? %>
+  <div class="alert alert-danger">
+    <ul>
+      <% @rent.errors.full_messages.each do |error| %>
+        <li>
+          <%=error %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+<%end %>
+
+<div class="card">
+  <div class="card-header"> Rent a Game</div>
+  <div class="card-body">
+    <%=simple_form_for [@game, @rent] do |f| %>
+      <%= f.association :customer %>
+      <%= f.input :comments %>
+      <%= f.button :submit, "Save", class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<% if @customer.errors.any? %>
+  <div class="alert alert-danger">
+    <ul>
+      <% @customer.errors.full_messages.each do |error| %>
+        <li>
+          <%=error %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+<%end %>
+
+<div class="card">
+  <div class="card-header"><%= @customer.new_record? ? 'New' : 'Edit' %> Customer</div>
+  <div class="card-body">
+    <%=simple_form_for @customer do |f| %>
+      <%= f.input :name %>
+      <%= f.input :uid %>
+      <%= f.input :birthdate %>
+
+      <%= f.button :submit, "Save", class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>

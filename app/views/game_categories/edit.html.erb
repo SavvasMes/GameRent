@@ -1,7 +1,7 @@
-<% if @game.errors.any? %>
+<% if @game_category.errors.any? %>
   <div class="alert alert-danger">
     <ul>
-      <% @game.errors.full_messages.each do |error| %>
+      <% @game_category.errors.full_messages.each do |error| %>
         <li>
           <%=error %>
         </li>
@@ -12,14 +12,10 @@
 <%end %>
 
 <div class="card">
-  <div class="card-header"><%= @game.new_record? ? 'New' : 'Edit' %> Game</div>
+  <div class="card-header"><%= @game_category.new_record? ? 'New' : 'Edit' %> Game_Category</div>
   <div class="card-body">
-    <%=simple_form_for @game do |f| %>
+    <%=simple_form_for @game_category do |f| %>
       <%= f.input :name %>
-      <%= f.association :game_category %>
-      <%= f.input :release_date %>
-      <%= f.input :quantity %>
-      <hr>
       <%= f.input :description %>
       <%= f.button :submit, "Save", class: 'btn btn-primary' %>
     <% end %>

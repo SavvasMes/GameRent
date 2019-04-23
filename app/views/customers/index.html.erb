@@ -1,0 +1,34 @@
+<%= link_to 'New Customer', new_customer_path, class: 'btn btn-primary mb-2' %>
+<br>
+<div class="card">
+  <div class="card-header" >Customer List</div>
+  <div class="card-body" >
+
+    <table class="table table-hover table-sm">
+      <thead>
+      <th >Name</th>
+      <th>Uid</th>
+      <th class="text-center">Birthdate</th>
+      <th></th>
+
+      </thead>
+      <tbody>
+      <% @customers.each do |c| %>
+        <tr>
+          <td><%=  c.name %></td>
+          <td><%=  c.uid %></td>
+          <td class="text-center"><%= c.birthdate %></td>
+          <td class="text-right"><%= link_to 'Edit', edit_customer_path(c), class: 'btn btn-warning'%>
+            <%= link_to 'Delete', c, method: :delete, class: 'btn btn-danger ', data:{confirm: 'Are you sure you want to delete?'} %></td>
+        </tr>
+      <% end %>
+      </tbody>
+
+    </table>
+  </div>
+  <% if @customers.total_pages > 1 %>
+    <div class="card-footer text-center">
+        <%= paginate @customers %>
+    </div>
+  <%end %>
+</div>

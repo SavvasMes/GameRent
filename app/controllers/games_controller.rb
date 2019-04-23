@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
   def index
-    @game = Game.page params[:page]
+    @games = Game.page params[:page]
   end
 
   def new
@@ -16,6 +16,10 @@ class GamesController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def show
+    @game = Game.find params[:id]
   end
 
   def edit
@@ -42,6 +46,6 @@ class GamesController < ApplicationController
 
   private
   def game_params
-    params.require(:game).permit(:name, :category, :release_date, :description)
+    params.require(:game).permit(:name, :game_category_id, :release_date, :quantity, :description)
   end
 end
